@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace unit02_hilo
+namespace Hilo
 {
-    class Program
+  class Program
+  {
+    static int Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        Director director = new Director();
+        director.StartGame();
+        return 0;
     }
+  }
 }
