@@ -4,16 +4,10 @@ namespace Jumper.Game
 {    public class Director
     {
         public TerminalService _terminalService = new TerminalService();
-        Jumper _jumper = new Jumper();
         public Words _goalWord = new Words();
-
-        public string real_hint;
-        public string real_word;
-
-        private bool isPlaying = true;
-        
-        // public Hints hint = new Hints();
         List<string> guessList = new List<string>();
+        Jumper _jumper = new Jumper();
+        private bool isPlaying = true;
         string userGuess = "";
         string [] hintArray;
         public Director()
@@ -29,6 +23,7 @@ namespace Jumper.Game
                 GetInput();
                 CheckInput();
                 ApplyInput();
+                DetermineOutcome();
             }
         }
 
@@ -66,13 +61,24 @@ namespace Jumper.Game
                     _terminalService.WriteText("");
                     guessList.Add(userGuess);
                     _jumper.wrong_guess_count += 1;
-                    if(_jumper.wrong_guess_count == 4)
-                    {
-                        _terminalService.WriteText("Game over!");
-                        _jumper.PrintJumper();
-                        isPlaying = false;
-                    }
                 }
+
+        }
+
+        public void DetermineOutcome()
+        {
+            if(_jumper.wrong_guess_count == 4)
+            {
+                _terminalService.WriteText("Game over!");
+                _jumper.PrintJumper();
+                isPlaying = false;
+            }
+            else if (!hintArray.Contains("_"))
+            {
+                _terminalService.WriteArray(hintArray);
+                _terminalService.WriteText("You guessed to correct word!");
+                isPlaying = false;
+            }
 
         }
 

@@ -21,17 +21,19 @@ namespace Jumper.Game
             return Console.ReadLine();
         }
 
-        // Prints whatever is passed in
+        // Prints whatever string is passed in
         public void WriteText(string text)
         {
             Console.WriteLine(text);
         }
 
+        // Prints whatever int is passed in
         public void WriteNumber(int number)
         {
             Console.WriteLine(number);
         }
 
+        // Prints whatever array is passed in
         public void WriteArray(string [] array)
         {
             Console.WriteLine("{0}", string.Join(" ", array));

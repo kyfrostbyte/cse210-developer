@@ -32,7 +32,7 @@ namespace Jumper.Game
             _wordOptions.Add("chicken"); 
 
             Random random = new Random();
-            _finalWord = _wordOptions[random.Next(1, 16)];
+            _finalWord = _wordOptions[random.Next(0, 15)];
             WordLength(_finalWord);
         }
 
