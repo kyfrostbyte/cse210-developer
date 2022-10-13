@@ -6,45 +6,75 @@ namespace Jumper.Game
         public TerminalService _terminalService = new TerminalService();
         Jumper _jumper = new Jumper();
         public Words _goalWord = new Words();
+
+        public string real_hint;
+        public string real_word;
+
+        private bool isPlaying = true;
         
-        List<string> goodGuess = new List<string>();
-        List<string> badGuess = new List<string>();
+        // public Hints hint = new Hints();
+        List<string> guessList = new List<string>();
         string userGuess = "";
+        string [] hintArray;
         public Director()
         {
 
         }
         public void RunGame()
         {  
-            _terminalService.WriteText(_goalWord._finalWord);
-            _terminalService.WriteText(_goalWord.finalWordLength.ToString());
-            GetInput();
+            hintArray = _goalWord.CreateHintArray(_goalWord._finalWord);
+            while(isPlaying)
+            {
+                 _terminalService.WriteText(_goalWord._finalWord);
+                GetInput();
+                CheckInput();
+                ApplyInput();
+            }
         }
 
         public void GetInput()
         {
+            _terminalService.WriteArray(hintArray);
+            _terminalService.WriteText("");
             _jumper.PrintJumper();
             _terminalService.WriteText(" ");
-            _jumper.wrong_guess_count += 1;
             userGuess = _terminalService.ReadText("Guess a letter (A-Z): ");
         }
 
         public void CheckInput()
         {
-            string _ngoalWord =_goalWord.ToString();
-            if (_ngoalWord.ToLower().Contains(userGuess)) { }
-            goodGuess.Add(userGuess);
-
+            if(guessList.Contains(userGuess))
+            {
+                _terminalService.WriteText("You have already made that guess. ");
+            }
         }
 
-        // Jumper _jumper = new Jumper();
-        // _terminalService.WriteText(" ");
+        public void ApplyInput()
+        {
+            string stringGoalWord =_goalWord._finalWord;
+            int index1 = stringGoalWord.IndexOf(userGuess);
+            if(index1 != -1)
+                {
+                    _terminalService.WriteText("CORRECT GUESS");
+                    _terminalService.WriteText("");
+                    guessList.Add(userGuess);
+                    hintArray[index1] = userGuess;
+                }
+                else
+                {
+                    _terminalService.WriteText("BAD GUESS");
+                    _terminalService.WriteText("");
+                    guessList.Add(userGuess);
+                    _jumper.wrong_guess_count += 1;
+                    if(_jumper.wrong_guess_count == 4)
+                    {
+                        _terminalService.WriteText("Game over!");
+                        _jumper.PrintJumper();
+                        isPlaying = false;
+                    }
+                }
 
-        // for (int i = 0; i < 4; i++)
-        // {
-        //     _jumper.JumperKill();
-        // }      
-
+        }
 
     }
 }

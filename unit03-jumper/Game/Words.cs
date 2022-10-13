@@ -9,9 +9,10 @@ namespace Jumper.Game
         public TerminalService _terminalService = new TerminalService();
         public List<string> _wordOptions = new List<string>();  
         public string _finalWord = "";
-        public int finalWordLength;
-        static int x;
-        // String[] hint = new string [x];
+        public int _finalWordLength;
+        public int x;
+        public string [] hintArray;
+
         public Words()
         {
             _wordOptions.Add("monkey");
@@ -32,29 +33,26 @@ namespace Jumper.Game
 
             Random random = new Random();
             _finalWord = _wordOptions[random.Next(1, 16)];
-            // finalWordLength = WordLength(_finalWord);
-            // Hint();
+            WordLength(_finalWord);
         }
 
-        // public int WordLength(string _finalWord)
-        // {
-        //     finalWordLength = _finalWord.Length;
-        //     return finalWordLength;
-        // }
+        public int WordLength(string word)
+        {
+            _finalWordLength = word.Length;
+            return _finalWordLength;
+        }
 
-        // public void Hint()
-        // {
-        //     x = finalWordLength;
-        //     String[] hintArray = new string [x];
-        //     for (int i = 0; i < x; i++)
-        //     {
-        //         hintArray[i] = "_";
-        //     }   
-        //     _terminalService.WriteArray(hintArray);
-
-        // }
-
-        
+        public string [] CreateHintArray(string word)
+        {
+            _finalWordLength = word.Length;
+            x = _finalWordLength;
+            String[] hintArray = new string [x];
+            for (int i = 0; i < x; i++)
+            {
+                hintArray[i] = "_";
+            }
+            return hintArray;
+        }    
     }
 }
 

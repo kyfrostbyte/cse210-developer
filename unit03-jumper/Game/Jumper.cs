@@ -17,7 +17,6 @@ namespace Jumper.Game
             _terminalService.WriteText(" / \\");
             _terminalService.WriteText(" ");
             _terminalService.WriteText("______");
-
         }
 
         public void PrintParachute()
@@ -62,14 +61,6 @@ namespace Jumper.Game
         {
             PrintParachute();
             PrintJumperBody();
-        }
-
-        public void JumperKill()
-        {
-            wrong_guess_count += 1;
-            PrintParachute();
-            PrintJumperBody();
-            Console.WriteLine("");
         }
     }
 }

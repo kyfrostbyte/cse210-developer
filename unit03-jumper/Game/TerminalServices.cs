@@ -27,6 +27,11 @@ namespace Jumper.Game
             Console.WriteLine(text);
         }
 
+        public void WriteNumber(int number)
+        {
+            Console.WriteLine(number);
+        }
+
         public void WriteArray(string [] array)
         {
             Console.WriteLine("{0}", string.Join(" ", array));
