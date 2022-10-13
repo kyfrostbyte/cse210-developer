@@ -5,19 +5,19 @@ namespace Jumper.Game
     public class Jumper
     {
         TerminalService _terminalService = new TerminalService();
-        int wrong_guess_count = 0;
+        public int wrong_guess_count = 0;
         public Jumper()
         {
-            
-            PrintParachute();
-            PrintJumperBody();
-            
+    
         }
 
         public void PrintJumperBody()
         {
             _terminalService.WriteText(" /|\\");
             _terminalService.WriteText(" / \\");
+            _terminalService.WriteText(" ");
+            _terminalService.WriteText("______");
+
         }
 
         public void PrintParachute()
@@ -56,6 +56,12 @@ namespace Jumper.Game
             {
                 _terminalService.WriteText("  X ");
             }
+        }
+
+        public void PrintJumper()
+        {
+            PrintParachute();
+            PrintJumperBody();
         }
 
         public void JumperKill()
