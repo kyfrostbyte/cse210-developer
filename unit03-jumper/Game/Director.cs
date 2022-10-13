@@ -4,8 +4,8 @@ namespace Jumper.Game
 {    public class Director
     {
         public TerminalService _terminalService = new TerminalService();
-        private Jumper _jumper = new Jumper();
-        public Words _goal = new Words();
+        public Words _goalWord = new Words();
+        
         string userGuess = "";
         public Director()
         {
@@ -13,7 +13,14 @@ namespace Jumper.Game
         }
         public void RunGame()
         {
-            GetInput();
+            Jumper _jumper = new Jumper();
+            _terminalService.WriteText(" ");
+
+            for (int i = 0; i < 4; i++)
+            {
+                _jumper.JumperKill();
+            }
+
             
         }
 
