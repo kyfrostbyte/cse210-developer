@@ -1,11 +1,12 @@
 using System;
 
-namespace unit03_jumper;
-
-public class Jumper
+namespace Jumper.Game
 {
-    public Jumper()
+    public class Jumper
     {
+        public Jumper()
+        {
 
+        }
     }
 }

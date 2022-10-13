@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Jumper.Game;
 
-namespace unit03_jumper
+namespace Jumper
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Director director = new Director();
+            director.RunGame();
         }
     }
 }

@@ -1,11 +1,12 @@
 using System;
 
-namespace unit03_jumper;
-
+namespace Jumper.Game
+{
 public class Words
 {
     public Words()
     {
 
     }
+}
 }
