@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "unit01-tictactoe",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-unit01-tictactoe",
+            "program": "${workspaceFolder}/unit01-tictactoe/bin/Debug/net6.0/unit01-tictactoe.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/unit01-tictactoe",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+        {
             "name": "unit02-hilo",
             "type": "coreclr",
             "request": "launch",
