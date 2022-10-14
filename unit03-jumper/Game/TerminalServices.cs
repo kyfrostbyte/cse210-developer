@@ -38,5 +38,11 @@ namespace Jumper.Game
         {
             Console.WriteLine("{0}", string.Join(" ", array));
         }
+
+        public void WriteListInline(string list)
+        {
+            Console.WriteLine("Previous Guesses: " + list);
+        }
+
     }
 }

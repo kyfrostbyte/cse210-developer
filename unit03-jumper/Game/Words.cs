@@ -34,6 +34,7 @@ namespace Jumper.Game
             Random random = new Random();
             _finalWord = _wordOptions[random.Next(0, 15)];
             WordLength();
+            CreateHintArray();
         }
         // Returns the length of the word as an int
         private int WordLength()
@@ -51,9 +52,28 @@ namespace Jumper.Game
                 hintArray[i] = "_";
             }
             return hintArray;
-        }    
+        } 
+
     }
 }
 
 
-
+// {
+//             bool isLetter = userGuess.All(c => (c >= 'a' && c <= 'z'));
+//             if (!isLetter)
+//             {
+//                 _terminalService.WriteText("Please enter only lower case letters.");
+//                 RunGame();
+//             }
+ 
+//             if(guessList.Contains(userGuess))
+//             {
+//                 _terminalService.WriteText("You have already made that guess. ");
+//                 RunGame();
+//             }
+//             if(userGuess.Length > 1)
+//             {
+//                 _terminalService.WriteText("Please enter only 1 letter at a time.");
+//                 RunGame();
+//             }
+//         }

@@ -9,6 +9,7 @@ namespace Jumper.Game
         Jumper _jumper = new Jumper();
         private bool isPlaying = true;
         string userGuess = "";
+        int loopCount = 0;
         string [] hintArray;
         public Director()
         {
@@ -17,46 +18,45 @@ namespace Jumper.Game
         // Calls functions in a loop until game outcome is decided
         public void RunGame()
         {  
-            hintArray = _goalWord.CreateHintArray();
             while(isPlaying)
             {
                 GetInput();
-                CheckInput();
                 ApplyInput();
                 DetermineOutcome();
             }
         }
         // Asks user to guess a letter
         private void GetInput()
-        {
-            _terminalService.WriteText(_goalWord._finalWord);
+        {   
+            if(loopCount == 0)
+            {
+                hintArray = _goalWord.CreateHintArray();
+            }
             _terminalService.WriteArray(hintArray);
             _terminalService.WriteText("");
             _jumper.PrintJumper();
             _terminalService.WriteText(" ");
+            if(loopCount > 0)
+            {
+                string listString = string.Join(" ", guessList);
+                _terminalService.WriteListInline(listString);
+            }
             userGuess = _terminalService.ReadText("Guess a letter (A-Z): ");
+            VerifyInput();
+            loopCount += 1;
         }
-        // Verifies that the user hasnt already guessed that letter, and that their input both one character and a letter
-        private void CheckInput()
+        // Verifies that the users input is an unused lower case letter
+        private void VerifyInput()
         {
             bool isLetter = userGuess.All(c => (c >= 'a' && c <= 'z'));
-
-            if (!isLetter)
-            {
-                _terminalService.WriteText("Please enter only lower case letters.");
-                RunGame();
-            }
- 
-            if(guessList.Contains(userGuess))
-            {
-                _terminalService.WriteText("You have already made that guess. ");
-            }
-            if(userGuess.Length > 1)
-            {
-                _terminalService.WriteText("Please enter only 1 letter at a time.");
+            if (!isLetter || guessList.Contains(userGuess) || userGuess.Length > 1)
+            {   
+                _terminalService.WriteText("Invalid input.");
+                _terminalService.WriteText("Please enter a unused single lower case letter.");
+                GetInput();
             }
         }
-        // Determines if guess was right or wrong. Updates the hint array if it was right.
+        // Determines if guess was right or wrong. Updates the hint array if guess was right.
         private void ApplyInput()
         {
             string stringGoalWord =_goalWord._finalWord;
