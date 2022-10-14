@@ -10,6 +10,8 @@ namespace Jumper.Game
         private bool isPlaying = true;
         string userGuess = "";
         string [] hintArray;
+        string [] duplicateArray;
+        
         public Director()
         {
 
@@ -17,6 +19,7 @@ namespace Jumper.Game
         public void RunGame()
         {  
             hintArray = _goalWord.CreateHintArray(_goalWord._finalWord);
+            duplicateArray = hintArray;
             while(isPlaying)
             {
                  _terminalService.WriteText(_goalWord._finalWord);
@@ -47,13 +50,26 @@ namespace Jumper.Game
         public void ApplyInput()
         {
             string stringGoalWord =_goalWord._finalWord;
+            string duplicateGoalWord = stringGoalWord;
             int index1 = stringGoalWord.IndexOf(userGuess);
             if(index1 != -1)
                 {
+                    char[] ch = stringGoalWord.ToCharArray();
+                    ch[index1] = 'X'; // index starts at 0!
+                    string newstring = new string (ch);
                     _terminalService.WriteText("CORRECT GUESS");
+                    hintArray[index1] = userGuess;
+                    int index2 = newstring.IndexOf(userGuess);
+                    if(index2 != -1)
+                    {
+                        hintArray[index2] = userGuess;
+                    }
                     _terminalService.WriteText("");
                     guessList.Add(userGuess);
-                    hintArray[index1] = userGuess;
+                    if(index2 != -1)
+                    {
+                        hintArray[index2] = userGuess;
+                    }
                 }
                 else
                 {
@@ -76,7 +92,7 @@ namespace Jumper.Game
             else if (!hintArray.Contains("_"))
             {
                 _terminalService.WriteArray(hintArray);
-                _terminalService.WriteText("You guessed to correct word!");
+                _terminalService.WriteText("You guessed the word!");
                 isPlaying = false;
             }
 
