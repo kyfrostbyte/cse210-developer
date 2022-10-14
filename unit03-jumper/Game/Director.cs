@@ -92,6 +92,9 @@ namespace Jumper.Game
             if(_jumper.wrong_guess_count == 4)
             {
                 _terminalService.WriteText("Game over!");
+                _terminalService.WriteText("The word was: ");
+                _terminalService.WriteText(" ");
+                _terminalService.WriteText(_goalWord._finalWord);
                 _jumper.PrintJumper();
                 isPlaying = false;
             }
