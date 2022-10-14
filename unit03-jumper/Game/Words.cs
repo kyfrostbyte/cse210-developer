@@ -56,24 +56,3 @@ namespace Jumper.Game
 
     }
 }
-
-
-// {
-//             bool isLetter = userGuess.All(c => (c >= 'a' && c <= 'z'));
-//             if (!isLetter)
-//             {
-//                 _terminalService.WriteText("Please enter only lower case letters.");
-//                 RunGame();
-//             }
- 
-//             if(guessList.Contains(userGuess))
-//             {
-//                 _terminalService.WriteText("You have already made that guess. ");
-//                 RunGame();
-//             }
-//             if(userGuess.Length > 1)
-//             {
-//                 _terminalService.WriteText("Please enter only 1 letter at a time.");
-//                 RunGame();
-//             }
-//         }

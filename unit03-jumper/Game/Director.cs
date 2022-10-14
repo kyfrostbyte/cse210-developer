@@ -8,9 +8,9 @@ namespace Jumper.Game
         List<string> guessList = new List<string>();
         Jumper _jumper = new Jumper();
         private bool isPlaying = true;
-        string userGuess = "";
-        int loopCount = 0;
-        string [] hintArray;
+        private string userGuess = "";
+        private int loopCount = 0;
+        private string [] hintArray;
         public Director()
         {
 
@@ -67,7 +67,7 @@ namespace Jumper.Game
                     char[] ch = stringGoalWord.ToCharArray();
                     ch[index1] = '0';
                     string newstring = new string (ch);
-                    _terminalService.WriteText("CORRECT GUESS");
+                    _terminalService.WriteText("GOOD GUESS");
                     hintArray[index1] = userGuess;
                     int index2 = newstring.IndexOf(userGuess);
                     if(index2 != -1)
