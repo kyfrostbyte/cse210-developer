@@ -10,16 +10,16 @@ namespace Jumper.Game
         {
     
         }
-
-        public void PrintJumperBody()
+        // Prints the body of the jumper
+        private void PrintJumperBody()
         {
             _terminalService.WriteText(" /|\\");
             _terminalService.WriteText(" / \\");
             _terminalService.WriteText(" ");
             _terminalService.WriteText("______");
         }
-
-        public void PrintParachute()
+        // Prints the jumper's parachute
+        private void PrintParachute()
         {
             if(wrong_guess_count == 0)
             {
@@ -47,16 +47,12 @@ namespace Jumper.Game
                 _terminalService.WriteText(" \\ / ");
                 _terminalService.WriteText("  0 ");
             }
-            else if(wrong_guess_count == 1)
-            {
-                _terminalService.WriteText("  0 ");
-            }
             else
             {
                 _terminalService.WriteText("  X ");
             }
         }
-
+        // Calls both print functions to print everything in one go
         public void PrintJumper()
         {
             PrintParachute();

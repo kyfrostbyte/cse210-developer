@@ -10,44 +10,54 @@ namespace Jumper.Game
         private bool isPlaying = true;
         string userGuess = "";
         string [] hintArray;
-        string [] duplicateArray;
-        
         public Director()
         {
 
         }
+        // Calls functions in a loop until game outcome is decided
         public void RunGame()
         {  
-            hintArray = _goalWord.CreateHintArray(_goalWord._finalWord);
-            duplicateArray = hintArray;
+            hintArray = _goalWord.CreateHintArray();
             while(isPlaying)
             {
-                 _terminalService.WriteText(_goalWord._finalWord);
                 GetInput();
                 CheckInput();
                 ApplyInput();
                 DetermineOutcome();
             }
         }
-
-        public void GetInput()
+        // Asks user to guess a letter
+        private void GetInput()
         {
+            _terminalService.WriteText(_goalWord._finalWord);
             _terminalService.WriteArray(hintArray);
             _terminalService.WriteText("");
             _jumper.PrintJumper();
             _terminalService.WriteText(" ");
             userGuess = _terminalService.ReadText("Guess a letter (A-Z): ");
         }
-
-        public void CheckInput()
+        // Verifies that the user hasnt already guessed that letter, and that their input both one character and a letter
+        private void CheckInput()
         {
+            bool isLetter = userGuess.All(c => (c >= 'a' && c <= 'z'));
+
+            if (!isLetter)
+            {
+                _terminalService.WriteText("Please enter only lower case letters.");
+                RunGame();
+            }
+ 
             if(guessList.Contains(userGuess))
             {
                 _terminalService.WriteText("You have already made that guess. ");
             }
+            if(userGuess.Length > 1)
+            {
+                _terminalService.WriteText("Please enter only 1 letter at a time.");
+            }
         }
-
-        public void ApplyInput()
+        // Determines if guess was right or wrong. Updates the hint array if it was right.
+        private void ApplyInput()
         {
             string stringGoalWord =_goalWord._finalWord;
             string duplicateGoalWord = stringGoalWord;
@@ -55,7 +65,7 @@ namespace Jumper.Game
             if(index1 != -1)
                 {
                     char[] ch = stringGoalWord.ToCharArray();
-                    ch[index1] = 'X'; // index starts at 0!
+                    ch[index1] = '0';
                     string newstring = new string (ch);
                     _terminalService.WriteText("CORRECT GUESS");
                     hintArray[index1] = userGuess;
@@ -66,10 +76,6 @@ namespace Jumper.Game
                     }
                     _terminalService.WriteText("");
                     guessList.Add(userGuess);
-                    if(index2 != -1)
-                    {
-                        hintArray[index2] = userGuess;
-                    }
                 }
                 else
                 {
@@ -80,8 +86,8 @@ namespace Jumper.Game
                 }
 
         }
-
-        public void DetermineOutcome()
+        // Determines if the game is over and prints the results
+        private void DetermineOutcome()
         {
             if(_jumper.wrong_guess_count == 4)
             {

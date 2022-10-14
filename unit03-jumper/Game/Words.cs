@@ -10,9 +10,9 @@ namespace Jumper.Game
         public List<string> _wordOptions = new List<string>();  
         public string _finalWord = "";
         public int _finalWordLength;
-        public int x;
+        private int x;
         public string [] hintArray;
-
+        // Picks a random word from the list.
         public Words()
         {
             _wordOptions.Add("monkey");
@@ -33,18 +33,17 @@ namespace Jumper.Game
 
             Random random = new Random();
             _finalWord = _wordOptions[random.Next(0, 15)];
-            WordLength(_finalWord);
+            WordLength();
         }
-
-        public int WordLength(string word)
+        // Returns the length of the word as an int
+        private int WordLength()
         {
-            _finalWordLength = word.Length;
+            _finalWordLength = _finalWord.Length;
             return _finalWordLength;
         }
-
-        public string [] CreateHintArray(string word)
+        // Creates the array for the hint based on length of the hidden word
+        public string [] CreateHintArray()
         {
-            _finalWordLength = word.Length;
             x = _finalWordLength;
             String[] hintArray = new string [x];
             for (int i = 0; i < x; i++)
