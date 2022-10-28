@@ -3,80 +3,60 @@ using System;
 
 namespace Unit04_greed.Game.Casting
 {
-    /// <summary>
-    /// <para>A thing that participates in the game.</para>
-    /// <para>
-    /// The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
-    /// space.
-    /// </para>
-    /// </summary>
+   
     public class Actor
     {
         private string _text = "";
+        private int _num = 0;
         private int _fontSize = 15;
         private Color _color = new Color(255, 255, 255); // white
-        private Point _position = new Point(0, 0);
+        private Point _position = new Point(0,0);
         private Point _velocity = new Point(0, 0);
 
-        /// <summary>
-        /// Constructs a new instance of Actor.
-        /// </summary>
+        
         public Actor()
         {
         }
 
-        /// <summary>
-        /// Gets the actor's color.
-        /// </summary>
-        /// <returns>The color.</returns>
+
+        //Gets the actor's color.
         public Color GetColor()
         {
             return _color;
         }
 
-        /// <summary>
-        /// Gets the actor's font size.
-        /// </summary>
-        /// <returns>The font size.</returns>
+        //Gets the actor's font size
         public int GetFontSize()
         {
             return _fontSize;
         }
 
-        /// <summary>
-        /// Gets the actor's position.
-        /// </summary>
-        /// <returns>The position.</returns>
+        //Gets the actor's position
         public Point GetPosition()
         {
             return _position;
         }
 
-        /// <summary>
-        /// Gets the actor's text.
-        /// </summary>
-        /// <returns>The text.</returns>
+        // Gets the actor's text.
         public string GetText()
         {
             return _text;
         }
 
-        /// <summary>
-        /// Gets the actor's current velocity.
-        /// </summary>
-        /// <returns>The velocity.</returns>
+        //Gets the actor's current velocity
         public Point GetVelocity()
         {
             return _velocity;
         }
 
-        /// <summary>
-        /// Moves the actor to its next position according to its velocity. Will wrap the position 
-        /// from one side of the screen to the other when it reaches the maximum x and y 
-        /// values.
-        /// </summary>
-        /// <param name="maxX">The maximum x value.</param>
-        /// <param name="maxY">The maximum y value.</param>
+        //Sets rock and gems velocity to move downward slowly
+        public Point SetVelocityDown()
+        {
+            _velocity = new Point(0, 5);
+            return _velocity;
+        }
+
+        // Moves actor's position on screen
         public void MoveNext(int maxX, int maxY)
         {
             int x = ((_position.GetX() + _velocity.GetX()) + maxX) % maxX;
@@ -84,11 +64,7 @@ namespace Unit04_greed.Game.Casting
             _position = new Point(x, y);
         }
 
-        /// <summary>
-        /// Sets the actor's color to the given value.
-        /// </summary>
-        /// <param name="color">The given color.</param>
-        /// <exception cref="ArgumentException">When color is null.</exception>
+        //Sets color of actor based on parameter
         public void SetColor(Color color)
         {
             if (color == null)
@@ -98,13 +74,7 @@ namespace Unit04_greed.Game.Casting
             this._color = color;
         }
 
-        /// <summary>
-        /// Sets the actor's font size to the given value.
-        /// </summary>
-        /// <param name="fontSize">The given font size.</param>
-        /// <exception cref="ArgumentException">
-        /// When font size is less than or equal to zero.
-        /// </exception>
+        //Sets the actor's font size based on parameter
         public void SetFontSize(int fontSize)
         {
             if (fontSize <= 0)
@@ -114,11 +84,7 @@ namespace Unit04_greed.Game.Casting
             this._fontSize = fontSize;
         }
 
-        /// <summary>
-        /// Sets the actor's position to the given value.
-        /// </summary>
-        /// <param name="position">The given position.</param>
-        /// <exception cref="ArgumentException">When position is null.</exception>
+        //Sets the actor's position based on parameter
         public void SetPosition(Point position)
         {
             if (position == null)
@@ -128,11 +94,7 @@ namespace Unit04_greed.Game.Casting
             this._position = position;
         }
 
-        /// <summary>
-        /// Sets the actor's text to the given value.
-        /// </summary>
-        /// <param name="text">The given text.</param>
-        /// <exception cref="ArgumentException">When text is null.</exception>
+       //Sets the actor's text based on parameter
         public void SetText(string text)
         {
             if (text == null)
@@ -142,11 +104,8 @@ namespace Unit04_greed.Game.Casting
             this._text = text;
         }
 
-        /// <summary>
-        /// Sets the actor's velocity to the given value.
-        /// </summary>
-        /// <param name="velocity">The given velocity.</param>
-        /// <exception cref="ArgumentException">When velocity is null.</exception>
+
+        //Sets the actor's velocity based on parameter
         public void SetVelocity(Point velocity)
         {
             if (velocity == null)
