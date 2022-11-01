@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 namespace Unit04_greed.Game.Casting
 {
-    /// <summary>
-    /// <para>A color.</para>
-    /// <para>The responsibility of Color is to hold and provide information about itself. Color has 
-    /// a few convenience methods for comparing and converting them.
-    /// </para>
-    /// </summary>
     public class Color
     {
         private int _red = 0;
@@ -16,12 +10,7 @@ namespace Unit04_greed.Game.Casting
         private int _blue = 0;
         private int _alpha = 255;
 
-        /// <summary>
-        /// Constructs a new instance of Color using the given red, green and blue values.
-        /// </summary>
-        /// <param name="red">The given red value (0-255).</param>
-        /// <param name="green">The given green value (0-255).</param>
-        /// <param name="blue">The given blue value (0-255).</param>
+        // Constructs a new instance of Color    
         public Color(int red, int green, int blue)
         {
             this._red = red;
@@ -29,37 +18,25 @@ namespace Unit04_greed.Game.Casting
             this._blue = blue;
         }
 
-        /// <summary>
-        /// Gets the color's alpha value.
-        /// </summary>
-        /// <returns>The alpha value.</returns>
+        // Gets the color's alpha value.
         public int GetAlpha()
         {
             return _alpha;
         }
 
-        /// <summary>
-        /// Gets the color's blue value.
-        /// </summary>
-        /// <returns>The blue value.</returns>
+        // Gets the color's blue value.
         public int GetBlue()
         {
             return _blue;
         }
 
-        /// <summary>
-        /// Gets the color's green value.
-        /// </summary>
-        /// <returns>The green value.</returns>
+        // Gets the color's green value.
         public int GetGreen()
         {
             return _green;
         }
 
-        /// <summary>
-        /// Gets the color's red value.
-        /// </summary>
-        /// <returns>The red value.</returns>
+        // Gets the color's red value.
         public int GetRed()
         {
             return _red;

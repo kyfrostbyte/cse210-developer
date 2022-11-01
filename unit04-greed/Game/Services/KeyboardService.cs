@@ -42,6 +42,16 @@ namespace Unit04_greed.Game.Services
             {
                 dx = 1;
             }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+            {
+                dx = -1;
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
+            {
+                dx = 1;
+            }
+
 
             Point direction = new Point(dx, dy);
             direction = direction.Scale(_cellSize);

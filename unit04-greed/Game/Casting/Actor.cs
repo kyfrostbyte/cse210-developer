@@ -7,7 +7,6 @@ namespace Unit04_greed.Game.Casting
     public class Actor
     {
         private string _text = "";
-        private int _num = 0;
         private int _fontSize = 15;
         private Color _color = new Color(255, 255, 255); // white
         private Point _position = new Point(0,0);
