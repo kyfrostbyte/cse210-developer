@@ -68,6 +68,17 @@ namespace unit05_cycle.Game.Casting
             return results;
         }
 
+        public int GetAllActorsCount()
+        {
+            List<Actor> results = new List<Actor>();
+            foreach (List<Actor> result in _actors.Values)
+            {
+                results.AddRange(result);
+            }
+            int actorCount = results.Count;
+            return actorCount;
+        }
+
         /// <summary>
         /// Gets the first actor in the given group.
         /// </summary>
@@ -81,6 +92,19 @@ namespace unit05_cycle.Game.Casting
                 if (_actors[group].Count > 0)
                 {
                     result = _actors[group][0];
+                }
+            }
+            return result;
+        }
+
+        public Actor GetSecondActor(string group)
+        {
+            Actor result = null;
+            if (_actors.ContainsKey(group))
+            {
+                if (_actors[group].Count > 1)
+                {
+                    result = _actors[group][1];
                 }
             }
             return result;

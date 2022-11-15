@@ -11,6 +11,8 @@ namespace unit05_cycle.Game.Casting
     public class Snake : Actor
     {
         private List<Actor> _segments = new List<Actor>();
+        int x;
+        int y;
 
         /// <summary>
         /// Constructs a new instance of a Snake.
@@ -100,8 +102,6 @@ namespace unit05_cycle.Game.Casting
         /// </summary>
         private void PrepareBody()
         {
-            int x = Constants.MAX_X / 2;
-            int y = Constants.MAX_Y / 2;
 
             for (int i = 0; i < Constants.SNAKE_LENGTH; i++)
             {
@@ -117,6 +117,8 @@ namespace unit05_cycle.Game.Casting
                 segment.SetColor(color);
                 _segments.Add(segment);
             }
+
+        
         }
     }
 }

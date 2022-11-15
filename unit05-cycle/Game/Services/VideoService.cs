@@ -73,7 +73,7 @@ namespace unit05_cycle.Game.Services
                 DrawActor(actor);
             }
         }
-        
+
         /// <summary>
         /// Copies the buffer contents to the screen. This method should be called at the end of
         /// the game's output phase.
